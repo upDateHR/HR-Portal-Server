@@ -14,10 +14,11 @@ const fs = require("fs");
 const Post = require("./models/Post");
 
 const app = express();
-// app.use(cors());
+
+app.use(cors());
 
 //
-app.use(cors({ origin: "http://localhost:5173" }));
+// app.use(cors({ origin: "http://localhost:5173" }));
 
 app.use(express.json());
 
@@ -180,7 +181,7 @@ app.use('/api/assistant', assistantRoutes);
 const PORT = process.env.PORT || 5000;
 
 async function start() {
-    try {
+    try {   
         const mongo = process.env.MONGO_URI; 
         await mongoose.connect(mongo, { useNewUrlParser: true, useUnifiedTopology: true });
         console.log('MongoDB connected Successfuly');
